@@ -4,6 +4,7 @@ import tensorflow.keras as keras
 from preprocess import SEQUENCE_LENGTH,MAPPING_PATH
 import numpy as np
 import music21 as m21
+import random as rd
 
 class MelodyGenerator:
   
@@ -143,9 +144,8 @@ if __name__ == "__main__" :
     tf.config.experimental.set_memory_growth(physical_devices[0], enable=True)
     
     mg=MelodyGenerator() 
-    seed ="55 _ _ _ 60 _ _ _ 60 _ _ _ 62 _"
-    seed2 = "55 _ 55 _ 60 _ 64 _ 67 _"
-    melody = mg.generator_melody(seed, 500, SEQUENCE_LENGTH, 0.3)
+    seed = ["55 _ _ _ 60 _ _ _ 60 _ _ _ 62 _","55 _ 55 _ 60 _ 64 _ 67 _","67 _ 67 _ 72 _ 69 _ 69","72 _ 69 _ 67 _ _ _ 67"," 60 _ 60 _ 64 _ 67 _"]
+    melody = mg.generator_melody(rd.choice(seed), 500, SEQUENCE_LENGTH, 0.3)
     print (melody)
     mg.save_melody(melody,file_name="newsong.midi")
     
